@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "m-1-1" {
   bucket = "m-1-1"
-
+  force_destroy = true
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
