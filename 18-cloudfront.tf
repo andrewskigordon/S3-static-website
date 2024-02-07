@@ -1,17 +1,4 @@
-resource "aws_s3_bucket" "b" {
-  bucket = "m-1-1"
-
-  tags = {
-    Name = "My bucket"
-  }
-}
-
-resource "aws_s3_bucket_acl" "b_acl" {
-  bucket = aws_s3_bucket.b.id
-  acl    = "private"
-}
-
-resource "aws_cloudfront_origin_access_control" "example" {
+resource "aws_cloudfront_origin_access_control" "evp" {
   name                              = "access"
   description                       = "Example Policy"
   origin_access_control_origin_type = "s3"
@@ -21,8 +8,8 @@ resource "aws_cloudfront_origin_access_control" "example" {
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name              = aws_s3_bucket.b.bucket_regional_domain_name
-    origin_access_control_id = aws_cloudfront_origin_access_control.example.id
+    domain_name              = aws_s3_bucket.m-1-1.bucket_regional_domain_name
+    origin_access_control_id = aws_cloudfront_origin_access_control.evp.id
     origin_id                = aws_s3_bucket.m-1-1.id
   }
 
