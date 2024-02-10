@@ -18,16 +18,9 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   comment             = "Some comment"
   default_root_object = "Index.html"
 
-  logging_config {
-    include_cookies = false
-    bucket          = "mylogs.s3.amazonaws.com"
-    prefix          = "myprefix"
-  }
-
-  aliases = ["mysite.example.com", "yoursite.example.com"]
-
-  default_cache_behavior {
-    allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
+  
+default_cache_behavior {
+    allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = aws_s3_bucket.m-1-1.id
 
@@ -60,6 +53,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = false
+    cloudfront_default_certificate = true
   }
 }
