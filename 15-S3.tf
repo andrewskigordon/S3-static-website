@@ -8,7 +8,7 @@ resource "aws_s3_bucket" "m-1-1" {
   }
 }
 
-
+#JSON reference
 resource "aws_s3_object" "m-1-1" {
   bucket = "m-1-1"
   key    = "index.html"
@@ -38,12 +38,14 @@ resource "aws_s3_bucket_public_access_block" "mrbucketson" {
   restrict_public_buckets = true
 }
 
+
 resource "aws_s3_bucket_versioning" "versioning_m-1-1" {
   bucket = aws_s3_bucket.m-1-1.id
   versioning_configuration {
-    status = "Disabled"
+  status = "Disabled"
   }
 }
+
 resource "aws_s3_bucket_policy" "allow_access_from_another_account" {
   bucket = aws_s3_bucket.m-1-1.id
   policy = jsonencode({
