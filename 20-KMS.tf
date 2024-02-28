@@ -1,4 +1,8 @@
-resource "aws_kms_key" "example" {
+resource "aws_kms_key" "a" {
+  description             = "KMS key 1"
+  deletion_window_in_days = 10
+}
+resource "aws_kms_key" "kms" {
   customer_master_key_spec = "ECC_NIST_P256"
   deletion_window_in_days  = 7
   key_usage                = "SIGN_VERIFY"
@@ -29,4 +33,5 @@ resource "aws_kms_key" "example" {
     Version = "2012-10-17"
   })
 }
+
 
