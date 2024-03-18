@@ -18,8 +18,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   comment             = "Some comment"
   default_root_object = "index.html"
 
-  
-default_cache_behavior {
+
+  default_cache_behavior {
     allowed_methods  = ["GET", "HEAD", "OPTIONS"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = aws_s3_bucket.m-1-1.id
